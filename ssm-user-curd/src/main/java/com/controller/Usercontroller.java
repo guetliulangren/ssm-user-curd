@@ -1,6 +1,7 @@
 package com.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import com.lgm.bean.User;
 import com.service.Userservice;
 
 @Controller
-
 @RequestMapping("user")
 public class Usercontroller {
 	
@@ -23,10 +23,9 @@ public class Usercontroller {
 	Userservice userservice;
 	@Autowired
 	HttpServletRequest request;
+	//Ó³ÉäÂ·¾¶
 	@RequestMapping(value="/longin")
 	@ResponseBody
-	
-	
     public ModelAndView login(@RequestParam("Name")String name,@RequestParam("Password")String password
     		
     		

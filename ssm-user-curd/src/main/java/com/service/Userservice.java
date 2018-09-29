@@ -24,23 +24,23 @@ public class Userservice {
 	//É¾³ı
 	public  void getdelete(int id) {
 		
-		dUserdao.delect(id);
+		dUserdao.delete(id);
 		
 	}
 	//ĞŞ¸Ä
-	public int getupdete(int id) {
+	public void getupdete(int id) {
 		
-		int user=dUserdao.update(id);
-		return user;
+		dUserdao.update(id);
+	
 		
 		
 	}
 	//Ôö¼Ó
-	public int getsave(User u) {
+	public void getsave(User u) {
 		
 		
-		int user=dUserdao.insert(u);
-		return user;
+		dUserdao.insert(u);
+		
 		
 		
 	}
