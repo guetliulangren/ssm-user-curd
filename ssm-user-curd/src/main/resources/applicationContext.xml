@@ -52,7 +52,7 @@
 	</bean> 
 	<!-- 切入表达式*后面要有空格 -->
 	<aop:config>
-	<aop:pointcut expression="execution(* com.lgm.service..*(..))" id="txpoint"/>
+	<aop:pointcut expression="execution(* com.service..*(..))" id="txpoint"/>
 	<aop:advisor advice-ref="advice"   pointcut-ref="txpoint"/>
 	</aop:config>
 	<!--  事物控制,拦截所有所定义有以下开头的方法-->
