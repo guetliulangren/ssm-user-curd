@@ -8,7 +8,7 @@
 
 
  <typeAliases>
-  <package name="com.lgm.bean"/>
+  <package name="com.lgm.bean.User"/>
 </typeAliases>
 <!-- 加入分页插件 -->
 <plugins>

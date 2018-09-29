@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%  pageContext.setAttribute("app_context", request.getContextPath());%>
+    
+    <% pageContext.setAttribute("context", request.getContextPath());%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,7 +11,7 @@
   
    
 
-<title>员工管理 </title>
+<title>SSM-crud</title>
 <script src="static/js/jquery.min.js"></script>
 
   <link href="stactic/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +25,7 @@
    <nav class="navbar navbar-inverse navbar-fixed-top">
      
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right"  id  ="longinform"  method="post"   action="${app_context}/user/longin">
+          <form class="navbar-form navbar-right"  id  ="longinform"  method="post"   action="user/longin">
             <div class="form-group">
               <input type="text"   id="name1" name="Name"  placeholder="用户名" class="form-control">
             </div>

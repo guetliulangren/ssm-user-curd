@@ -37,8 +37,8 @@ public class Usercontroller {
        if(user!=null)
 	   {
     	   HttpSession session=request.getSession();
-    	   session.setAttribute("name", name);
-    	   return new  ModelAndView("my2");
+    	   session.setAttribute("username", name);
+    	   return new  ModelAndView("my2");//视图重定向
 	   
 	   
 	   }
