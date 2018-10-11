@@ -12,7 +12,7 @@ public class Userservice {
 	Userdao dUserdao;
 	
 	//查找并返回一个对象
-	public User getlongin(String name,String password) {
+	public User getlongin(String name,char[] password) {
 		
 		
 

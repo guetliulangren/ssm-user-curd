@@ -1,9 +1,14 @@
 package com.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +23,7 @@ import com.service.Userservice;
 @RequestMapping("user")
 public class Usercontroller {
 	
-	//自动注入
-	@Autowired
-	Userservice userservice;
-	@Autowired
-	HttpServletRequest request;
+	
 	//映射路径
 	@RequestMapping(value="/longin")
 	@ResponseBody
@@ -30,19 +31,31 @@ public class Usercontroller {
     		
     		
     		 ){
-	   
-       User user= (User) userservice.getlongin(name, password);
-     
-      
-       if(user!=null)
+		
+		
+		Subject currentuser=SecurityUtils.getSubject();
+       if(!currentuser.isAuthenticated())
 	   {
-    	   HttpSession session=request.getSession();
-    	   session.setAttribute("username", name);
-    	   return new  ModelAndView("my2");//视图重定向
+    	   
+    	   
+    	   UsernamePasswordToken token =new  UsernamePasswordToken(name,password);
+    	 //  return new  ModelAndView("my2");//视图重定向
+    	  
+    	   token.setRememberMe(true);
+    	   try {
+			
+		
+    	   currentuser.login(token);
+    	   System.out.println(token.hashCode());
 	   
-	   
+    	   } catch (AuthenticationException e) {
+   			// TODO: handle exception
+    		   
+    		   System.out.println(e.getMessage());
+    		
+   		 }
 	   }
-	         return null;
+       return new  ModelAndView("my2");
 	
 	}
 	

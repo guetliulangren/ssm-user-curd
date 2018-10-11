@@ -65,4 +65,71 @@
 	<tx:method name="*"   propagation="SUPPORTS" rollback-for="Exception"/>
 	</tx:attributes>
 	</tx:advice>
+	
+	<!--  shiro配置文件-->
+	<!--Shiro配置-->
+
+    <!--1.配置SecurityManager-->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+     <property name="authenticator" ref="authenticator"/>
+        <property name="realms">
+            <list>
+                <ref bean="shiro1" />
+               
+            </list>
+        </property> 
+    </bean>
+      <!--
+        3.配置shiro过滤器
+        3.1) id必须和web.xml中配置的shiroFilter filterName一致.
+    -->
+     
+ <bean  id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" >
+        <property name="securityManager" ref="securityManager"/>
+         <property name="loginUrl" value="/index2.jsp"/>
+        <property name="successUrl" value="/my2.jsp"/>
+        <property name="unauthorizedUrl" value="/error.jsp"/> 
+        <!--
+	            配置需要受保护的页面
+	               以及访问这些页面需要的权限
+	      1) anon可以匿名访问的页面
+	      2) authc 必须认证(登录)后才可以访问的页面
+	        -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--加载静态资源-->
+                /asset/** = anon
+                /user/longin= anon
+                /index2.jsp = anon
+                
+                /logout = logout
+                <!--除以上配置外，其他请求全部必须认证-->
+                /** = authc
+            </value>
+        </property>
+    </bean>
+    <!--
+        2.配置realm
+        2.1) 使用实现了org.apache.shiro.realm.Realm接口的realm
+    -->
+    <bean class="org.apache.shiro.authc.pam.ModularRealmAuthenticator" id="authenticator">
+      <property name="realms">
+            <list>
+                <ref bean="shiro1" />
+               
+            </list>
+        </property> 
+    </bean>
+
+  
+    <bean class="com.shiro.Shiro1" id="shiro1">
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+                <property name="hashAlgorithmName" value="SHA1"/>
+                <property name="hashIterations" value="1024"/>
+            </bean>
+        </property>
+    </bean>
+
+  
 </beans>
