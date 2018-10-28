@@ -1,5 +1,7 @@
 package com.service;
 
+import java.io.Serializable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ public class Userservice {
 	Userdao dUserdao;
 	
 	//查找并返回一个对象
-	public User getlongin(String name,char[] password) {
+	public User getlongin(String name,String password) {
 		
 		
 
@@ -44,6 +46,7 @@ public class Userservice {
 		
 		
 	}
+	
 	
 	
 

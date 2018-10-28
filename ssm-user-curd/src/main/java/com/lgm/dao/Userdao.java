@@ -1,5 +1,7 @@
 package com.lgm.dao;
 
+import java.io.Serializable;
+
 import org.apache.ibatis.annotations.Param;
 
 
@@ -8,7 +10,7 @@ import com.lgm.bean.User;
 public interface Userdao {
 	
 	//²éÕÒ
-	User find(@Param("name")String name,@Param("password")char[] password);
+	User find(@Param("name")String name,@Param("password") String password);
 	//É¾³ý
 	void delete(Integer id);
 	//Ôö¼Ó

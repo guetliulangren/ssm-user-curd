@@ -21,16 +21,17 @@ public class Shiro1 extends AuthenticatingRealm{
 	
 		UsernamePasswordToken user=(UsernamePasswordToken) token;
 		String name=user.getUsername();
-		char[] password=user.getPassword();
-		System.out.println(name);
-		System.out.println(password);
-		User u=userservice.getlongin(name, password);
-		System.out.println(u);
-		if(u==null) {
+	    char[] password=user.getPassword();
+		/*System.out.println(name);
+		System.out.println(password);*/
+	    String pass=String.valueOf(password);
+	    User u=userservice.getlongin(name, pass);
+	    System.out.println(u);
+	    if(u==null) {
+		
+	     throw new UnknownAccountException("用户 ");
 			
-		throw new UnknownAccountException("用户不存在");
-			
-		}
+		 }
 		
 		Object principal=name;
 		Object credentials=password;

@@ -7,6 +7,9 @@ public class User {
 	private  String  password;
 	
 	
+	
+
+
 	public User(int id, String name, String password) {
 		super();
 		this.id = id;
@@ -39,6 +42,10 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", password=" + password + "]";
 	}
 
 }
