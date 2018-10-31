@@ -121,7 +121,7 @@
         </property> 
     </bean>
 
-  <!-- 
+
     <bean class="com.shiro.Shiro1" id="shiro1">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -129,7 +129,7 @@
                 <property name="hashIterations" value="1024"/>
             </bean>
         </property>
-    </bean> -->
+    </bean> 
 
   
 </beans>

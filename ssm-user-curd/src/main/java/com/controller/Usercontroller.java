@@ -40,12 +40,13 @@ public class Usercontroller {
     	   UsernamePasswordToken token =new  UsernamePasswordToken(name,password);
     	 //  return new  ModelAndView("my2");//视图重定向
     	  
-    	   token.setRememberMe(true);
+    	   
     	   try {
 			
-		
+    	  
     	   currentuser.login(token);
-    	   System.out.println(token.hashCode());
+    	   token.setRememberMe(true);
+    	  
 	   
     	   } catch (AuthenticationException e) {
    			// TODO: handle exception

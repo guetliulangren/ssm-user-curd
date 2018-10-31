@@ -1,13 +1,12 @@
 package com.shiro;
-
 import org.apache.shiro.authc.AuthenticationException;
-
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.realm.AuthenticatingRealm;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.lgm.bean.User;
 import com.service.Userservice;
@@ -26,6 +25,7 @@ public class Shiro1 extends AuthenticatingRealm{
 		System.out.println(password);*/
 	    String pass=String.valueOf(password);
 	    User u=userservice.getlongin(name, pass);
+	   
 	    System.out.println(u);
 	    if(u==null) {
 		

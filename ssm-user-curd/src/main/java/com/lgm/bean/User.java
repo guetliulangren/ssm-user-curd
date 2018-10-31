@@ -5,11 +5,9 @@ public class User {
 	private  int  id;
 	private  String  name;
 	private  String  password;
+	private  Integer roles;
 	
 	
-	
-
-
 	public User(int id, String name, String password) {
 		super();
 		this.id = id;
@@ -23,6 +21,14 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Integer getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Integer roles) {
+		this.roles = roles;
+	}
 
 	public int getId() {
 		return id;
