@@ -72,6 +72,7 @@
         3.配置shiro过滤器
         3.1) id必须和web.xml中配置的shiroFilter filterName一致.
     -->
+  <context:component-scan base-package="com.shiro" />
      
  <bean  id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" >
         <property name="securityManager" ref="securityManager"/>
@@ -134,7 +135,7 @@
   </bean>
   
   
-   <!--    加密 
+
     <bean class="com.shiro.Shiro1" id="shiro1">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -143,6 +144,6 @@
             </bean>
         </property>
     </bean> 
- -->
+
   
 </beans>
