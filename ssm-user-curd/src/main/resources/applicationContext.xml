@@ -67,18 +67,7 @@
 	</tx:advice>
 	
 	<!--  shiro配置文件-->
-	<!--Shiro配置-->
-
-    <!--1.配置SecurityManager-->
-    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
-     <property name="authenticator" ref="authenticator"/>
-        <property name="realms">
-            <list>
-                <ref bean="shiro1" />
-               
-            </list>
-        </property> 
-    </bean>
+	
       <!--
         3.配置shiro过滤器
         3.1) id必须和web.xml中配置的shiroFilter filterName一致.
@@ -108,6 +97,20 @@
             </value>
         </property>
     </bean>
+    <!--Shiro配置-->
+
+   <!--1.配置SecurityManager-->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+     <property name="authenticator" ref="authenticator"/>
+        <property name="realms">
+            <list>
+                <ref bean="shiro1" />
+                 <!--配置自定义Realm-->
+                 <!--shiro1使用扫描器扫描注册成功了-->
+               
+            </list>
+        </property> 
+    </bean>
     <!--
         2.配置realm
         2.1) 使用实现了org.apache.shiro.realm.Realm接口的realm
@@ -120,8 +123,18 @@
             </list>
         </property> 
     </bean>
+ <!-- 生命周期 -->
+ <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
 
 
+<!-- 启用shiro注解 -->
+  <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+  <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+     <property name="securityManager" ref="securityManager"/>
+  </bean>
+  
+  
+   <!--    加密 
     <bean class="com.shiro.Shiro1" id="shiro1">
         <property name="credentialsMatcher">
             <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -130,6 +143,6 @@
             </bean>
         </property>
     </bean> 
-
+ -->
   
 </beans>
