@@ -24,38 +24,38 @@ public class Usercontroller {
 	
 	@RequestMapping(value="/longin")
 	@ResponseBody
-    public ModelAndView login(@RequestParam("Name")String name,@RequestParam("Password") String password
+    public String login(@RequestParam("Name")String name,@RequestParam("Password") String password
     		
     		
     		 ){
 		
 		
-		Subject currentuser=SecurityUtils.getSubject();
-       if(!currentuser.isAuthenticated())
-	   {
-    	   User u=userservice.getlongin(name, password);
-   		 //  System.out.println(u);
-   		   
-    	   
-    	   UsernamePasswordToken token =new  UsernamePasswordToken(name,password);
+		Subject subject=SecurityUtils.getSubject();
+    	UsernamePasswordToken token =new  UsernamePasswordToken(name,password);
     	 //  return new  ModelAndView("my2");//视图重定向
     	  
     	   
     	   try {
 			
     	  
-    	   currentuser.login(token);
-    	   token.setRememberMe(true);
+    	   subject.login(token);
+    	   if (subject.hasRole("admin")) {
+               return "redirect:/admin/showStudent";
+           } else if (subject.hasRole("user")) {
+               return "redirect:/teacher/showCourse";
+           } else if (subject.hasRole("visit")) {
+               return "redirect:/student/showCourse";
+           }
     	  
 	   
     	   } catch (AuthenticationException e) {
    			// TODO: handle exception
     		   
-    		   System.out.println(e.getMessage());
+    		 
     		
    		 }
-	   }
-       return new  ModelAndView("my2");
+	 
+       return "index2.jsp";
 	
 	}
 	
